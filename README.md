@@ -31,7 +31,7 @@ An embeddable byte-oriented key-value store in C++20.
 | Testing | Unit tests, fuzzing (libFuzzer), differential testing, microbenchmarks |
 | Platforms | Linux, macOS, POSIX file I/O (`write`, `fsync`, `rename`) |
 
-Trim this table to what you have actually used. Hiring managers will ask about anything listed.
+
 
 ## Currently exploring
 
