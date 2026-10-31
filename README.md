@@ -45,6 +45,4 @@ Trim this table to what you have actually used. Hiring managers will ask about a
 - Make invariants explicit and test them
 - Prefer simple mechanisms that can be explained end to end
 
-## Contact
 
-- GitHub: [@FRYUR](https://github.com/FRYUR)
