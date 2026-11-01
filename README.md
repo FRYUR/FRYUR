@@ -1,48 +1,52 @@
 # FRYUR
 
-Systems programmer focused on C++, memory management, and low-level architecture.
-I like knowing where every byte lives, and I build small projects to prove I understand the layers beneath the abstractions.
+Systems programmer focused on C++, memory management, low-level architecture, and concurrent execution. I care about where every byte lives and build systems from scratch to prove an understanding of the layers beneath the abstractions.
 
-## Focus areas
+## Focus Areas
 
-- **Memory management:** arena and pool allocators, object layout, alignment, cache behavior, ownership and lifetime design
-- **Data structures:** open-addressing hash tables, append-only logs, on-disk formats, crash recovery
-- **Systems architecture:** clear module boundaries, explicit invariants, documented trade-offs
-- **Correctness tooling:** sanitizers (ASan/UBSan), fuzzing, differential testing, static analysis
+- **Memory Management:** Arena and pool allocators, custom object layout, alignment enforcement, cache-conscious design, and precise ownership/lifetime semantics.
+- **Data Structures:** Open-addressing hash tables, append-only logs, on-disk storage formats, lock-free primitives, and crash recovery routines.
+- **Systems Architecture:** Clear module boundaries, strict thread-safety guarantees, explicit invariants, and documented trade-offs.
+- **Correctness Tooling:** ThreadSanitizer (TSan), AddressSanitizer (ASan), UndefinedBehaviorSanitizer (UBSan), fuzzing, differential testing, and static analysis.
 
-## Featured project
+## Featured Projects
 
 ### [Curren-memory](https://github.com/FRYUR/Curren-memory)
 
-An embeddable byte-oriented key-value store in C++20.
+An embeddable, byte-oriented key-value store built in C++20.
 
-- Arena-backed open-addressing index with tombstones and load-factor rehashing
-- CRC-checked append-only log with crash recovery and atomic compaction
-- Tested with sanitizers, a libFuzzer harness, and randomized differential tests against `std::map`
-- Design document covering memory layout, on-disk format, and durability guarantees
+- **Design:** Arena-backed open-addressing index featuring tombstones, load-factor rehashing, and optimized memory alignment.
+- **Durability:** CRC-checked append-only log with robust crash recovery and atomic log compaction.
+- **Testing:** Validated with sanitizers, a custom `libFuzzer` harness, and randomized differential tests against `std::map`.
+- **Documentation:** Comprehensive design document covering physical memory layout, on-disk serialization formats, and durability guarantees.
 
-## Technical skills
+### [CPP-concurrency](https://github.com/FRYUR/CPP-concurrency)
 
-| Area | Tools |
+Low-level concurrent data structures and synchronization primitives implemented in modern C++.
+
+- **Concurrency Engineering:** Lock-free queues, hazard pointers, and memory-reclamation schemes exploring the nuances of the C++ memory model (`std::memory_order`).
+- **Performance:** Thread-safe bounded and unbounded buffer implementations explicitly engineered to eliminate false sharing and minimize inter-core cache line contention.
+- **Stress Validation:** Rigorously tested under high thread contention using ThreadSanitizer (TSan) and aggressive concurrency stress harnesses.
+
+## Technical Skills
+
+| Domain | Tools & Technologies |
 |---|---|
-| Languages | C++ (17/20), C, CMake, Bash |
-| Build and tooling | CMake, Clang/GCC, clang-tidy, clang-format, GitHub Actions |
-| Debugging and analysis | GDB/LLDB, AddressSanitizer, UndefinedBehaviorSanitizer, Valgrind, perf |
-| Testing | Unit tests, fuzzing (libFuzzer), differential testing, microbenchmarks |
-| Platforms | Linux, macOS, POSIX file I/O (`write`, `fsync`, `rename`) |
+| **Languages** | C++ (17/20/23), C, CMake, Bash |
+| **Build & Tooling** | CMake, Clang/GCC, `clang-tidy`, `clang-format`, GitHub Actions (CI/CD) |
+| **Debugging & Analysis** | GDB, LLDB, AddressSanitizer, ThreadSanitizer, UndefinedBehaviorSanitizer, Valgrind, `perf` |
+| **Verification & Testing** | Unit testing, concurrency stress testing, `libFuzzer`, differential testing, microbenchmarking |
+| **Platforms & APIs** | Linux, macOS, POSIX file I/O (`write`, `fsync`, `rename`), low-level multithreading primitives (`std::atomic`, `std::mutex`, condition variables) |
 
+## Currently Exploring
 
+- Memory-mapped (`mmap`) storage engines and page-aligned allocation strategies
+- Robin Hood hashing optimizations and probe-length distribution analysis
+- Lock-free ring buffers and hardware transactional memory constraints
 
-## Currently exploring
+## Engineering Principles
 
-- mmap-backed storage and page-aligned allocation
-- Robin Hood hashing and probe-length analysis
-- Lock-free data structures and the C++ memory model
-
-## Principles
-
-- Measure before claiming; publish benchmarks with hardware and flags
-- Make invariants explicit and test them
-- Prefer simple mechanisms that can be explained end to end
-
+- **Measure First:** Never claim performance improvements without publishing reproducible benchmarks complete with hardware specifications, compiler flags, and methodology.
+- **Explicit Invariants:** State assumptions clearly in code and documentation; enforce them continuously under aggressive scheduling and fuzzing.
+- **Radical Simplicity:** Prefer clear, deterministic mechanisms that can be reasoned about and explained end-to-end from source code to machine instructions.
 
